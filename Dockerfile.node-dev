@@ -1,6 +1,7 @@
 ARG ALPINE_VERSION=3.18
 
 FROM node:lts-alpine
+LABEL maintainer="dangquoctrung123@gmail.com"
 
 ARG PNPM_VERSION=latest
 
