@@ -19,7 +19,8 @@
 Build command:
 ```sh
 export iaTAG= # node | node-dev | node-aws ...
-podman build --build-arg AWS_CLI_VERSION=2.13.19 -t namesmt/images-alpine:${iaTAG} -f Dockerfile.${iaTAG}
+podman build --build-arg AWS_CLI_VERSION=2.13.28 -t namesmt/images-alpine:${iaTAG} -f Dockerfile.${iaTAG}
+podman push namesmt/images-alpine:${iaTAG}
 ```
 
 Refs:
