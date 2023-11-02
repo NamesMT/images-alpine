@@ -1,0 +1,89 @@
+name: Build image pnpm* tag creation
+
+on:
+  push:
+    tags:
+      - 'pnpm*'
+  workflow_dispatch:
+
+env:
+  DOCKER_USERNAME: namesmt
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Container Details
+        id: container_detail
+        run: |
+          if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then
+            TAG=$(git tag --sort=taggerdate | tail -1)
+          else
+            TAG=$(echo ${{ github.ref }} | cut -d/ -f3)
+          fi
+
+          # Use the repository name as the image name for simplicity
+          IMAGE_NAME="$(echo ${GITHUB_REPOSITORY} | cut -d: -f1 | tr '[:upper:]' '[:lower:]')"
+
+          SUFFIX="${TAG}"
+
+          # Set output parameters.
+          echo "imageName=${IMAGE_NAME}" >> $GITHUB_OUTPUT
+          echo "suffix=${SUFFIX}" >> $GITHUB_OUTPUT
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: amd64,arm64
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PAT }}
+
+      - name: Build node
+        uses: docker/build-push-action@v3
+        with:
+          file: ./Dockerfile.node
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ steps.container_detail.outputs.imageName }}:node
+            ${{ steps.container_detail.outputs.imageName }}:node${{ steps.container_detail.outputs.suffix }}
+
+      - name: Build node-dev
+        uses: docker/build-push-action@v3
+        with:
+          file: ./Dockerfile.node-dev
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ steps.container_detail.outputs.imageName }}:node-dev
+            ${{ steps.container_detail.outputs.imageName }}:node-dev${{ steps.container_detail.outputs.suffix }}
+
+      - name: Build node-aws
+        uses: docker/build-push-action@v3
+        with:
+          file: ./Dockerfile.node-aws
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ steps.container_detail.outputs.imageName }}:node-aws
+            ${{ steps.container_detail.outputs.imageName }}:node-aws${{ steps.container_detail.outputs.suffix }}
+
+      - name: Build node-aws-dev
+        uses: docker/build-push-action@v3
+        with:
+          file: ./Dockerfile.node-aws-dev
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ${{ steps.container_detail.outputs.imageName }}:node-aws-dev
+            ${{ steps.container_detail.outputs.imageName }}:node-aws-dev${{ steps.container_detail.outputs.suffix }}
