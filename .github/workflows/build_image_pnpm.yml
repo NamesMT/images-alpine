@@ -56,7 +56,7 @@ jobs:
           push: true
           tags: |
             ${{ steps.container_detail.outputs.imageName }}:node
-            ${{ steps.container_detail.outputs.imageName }}:node${{ steps.container_detail.outputs.suffix }}
+            ${{ steps.container_detail.outputs.imageName }}:node_${{ steps.container_detail.outputs.suffix }}
 
       - name: Build node-dev
         uses: docker/build-push-action@v3
@@ -66,7 +66,7 @@ jobs:
           push: true
           tags: |
             ${{ steps.container_detail.outputs.imageName }}:node-dev
-            ${{ steps.container_detail.outputs.imageName }}:node-dev${{ steps.container_detail.outputs.suffix }}
+            ${{ steps.container_detail.outputs.imageName }}:node-dev_${{ steps.container_detail.outputs.suffix }}
 
       - name: Build node-aws
         uses: docker/build-push-action@v3
@@ -76,7 +76,7 @@ jobs:
           push: true
           tags: |
             ${{ steps.container_detail.outputs.imageName }}:node-aws
-            ${{ steps.container_detail.outputs.imageName }}:node-aws${{ steps.container_detail.outputs.suffix }}
+            ${{ steps.container_detail.outputs.imageName }}:node-aws_${{ steps.container_detail.outputs.suffix }}
 
       - name: Build node-aws-dev
         uses: docker/build-push-action@v3
@@ -86,4 +86,4 @@ jobs:
           push: true
           tags: |
             ${{ steps.container_detail.outputs.imageName }}:node-aws-dev
-            ${{ steps.container_detail.outputs.imageName }}:node-aws-dev${{ steps.container_detail.outputs.suffix }}
+            ${{ steps.container_detail.outputs.imageName }}:node-aws-dev_${{ steps.container_detail.outputs.suffix }}
