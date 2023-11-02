@@ -24,11 +24,9 @@ podman build --build-arg -t imageName:${imageTag} -f Dockerfile.${imageTag}
 podman push imageName:${imageTag}
 ```
 
-Refs:
-- `https://github.com/aws/aws-cli/tags`
-
 ## Roadmap
-- [ ] Github Actions to automate build
+- [x] Github Actions to automate build
+  - builds will be automated with each pnpm release
 
 ## Credits:
 - [theidledeveloper/aws-cli-alpine](https://github.com/theidledeveloper/aws-cli-alpine): most of starting points
