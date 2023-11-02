@@ -4,8 +4,6 @@ ARG ALPINE_VERSION=3.18
 # Even though alpine 3.18+ have native aws-cli package, the self-built package have lower size and ensure latest version.
 FROM python:3.11-alpine${ALPINE_VERSION} as builder
 
-ARG AWS_CLI_VERSION
-
 RUN apk add --update-cache --no-cache \
   unzip \
   groff \
@@ -15,7 +13,7 @@ RUN apk add --update-cache --no-cache \
 
 WORKDIR /aws-cli
 
-RUN wget https://github.com/aws/aws-cli/archive/refs/tags/${AWS_CLI_VERSION}.tar.gz -qO- | \
+RUN wget $(wget https://api.github.com/repos/aws/aws-cli/tags\?per_page\=1 -qO- | jq -r '.[0].tarball_url') -qO- | \
   tar -xz --strip-components=1 --exclude=.changes --exclude=.github --exclude=tests --exclude=proposals
 
 RUN python -m venv venv
