@@ -9,7 +9,8 @@ RUN apk add --update-cache --no-cache \
   groff \
   build-base \
   libffi-dev \
-  cmake
+  cmake \
+  jq
 
 WORKDIR /aws-cli
 
