@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Check for new tags
       run: |
         ./scripts/new_release_check.sh
-      env:
-        TOKEN: ${{ github.token }}
