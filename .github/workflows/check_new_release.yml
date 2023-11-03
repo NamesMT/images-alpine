@@ -11,6 +11,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: Check for new tags
       run: |
-        ./.github/scripts/new_release_check.sh
+        ./scripts/new_release_check.sh
       env:
         TOKEN: ${{ github.token }}
