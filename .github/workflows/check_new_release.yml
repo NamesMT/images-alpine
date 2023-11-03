@@ -14,4 +14,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Check for new tags
       run: |
-        ./scripts/new_release_check.sh
+        ./.github/scripts/new_release_check.sh
