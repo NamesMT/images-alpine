@@ -15,7 +15,7 @@ apk add --no-cache \
 
 # Install pnpm and ni
 npx pnpm i -g pnpm@latest
-pnpm i -g @antfu/ni && echo 'globalAgent=pnpm' > /root/.nirc
+RUN pnpm i -g @antfu/ni && echo 'defaultAgent=pnpm' > .nirc && echo 'globalAgent=pnpm' >> .nirc
 
 # Configures zsh
 sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
