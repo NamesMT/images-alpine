@@ -32,10 +32,10 @@ podman run -it --rm namesmt/images-alpine:node-dev_pnpm8.10.5
 
 ### Build:
 ```sh
-export imageName = namesmt/images-alpine
+export imageName=namesmt/images-alpine
 export imageTag= # node | node-dev | node-aws ...
-podman build --build-arg -t imageName:${imageTag} -f Dockerfile.${imageTag}
-podman push imageName:${imageTag}
+podman build -t ${imageName}:${imageTag} -f Dockerfile.${imageTag}
+podman push ${imageName}:${imageTag}
 ```
 
 ## Roadmap
