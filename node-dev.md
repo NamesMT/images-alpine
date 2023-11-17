@@ -17,6 +17,12 @@ apk add --no-cache \
 npx pnpm i -g pnpm@latest
 RUN pnpm i -g @antfu/ni && echo 'defaultAgent=pnpm' > .nirc && echo 'globalAgent=pnpm' >> .nirc
 
+# Adding a simple command to change git remote connection from/to ssh/https
+touch /etc/profile.d/gitRemoteChanger.sh && \
+  echo alias git-ssh=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^https://\(\[\^/\]\*\)/\(.\*\)\$,git@\\1:\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh && \
+  echo alias git-https=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^git@\(\[\^:\]\*\):/\*\(.\*\)\$,https://\\1/\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh && \
+  source /etc/profile.d/gitRemoteChanger.sh
+
 # Configures zsh
 sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
   -x \
