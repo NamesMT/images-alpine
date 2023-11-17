@@ -77,5 +77,5 @@ RUN sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/download
 
 # Set zsh as the default shell
 RUN sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
-CMD [ "/bin/zsh" ]
+CMD ["/bin/zsh", "--login"]
 ##
