@@ -3,10 +3,10 @@ Commands to install the same node-dev environment in a fresh Alpine instance, pr
 
 ```sh
 # Setting the required environment path for pnpm
-touch /etc/profile.d/pnpmPath.sh
-echo 'export PNPM_HOME=/root/.local/share/pnpm' >> /etc/profile.d/pnpmPath.sh
-echo 'export PATH=$PNPM_HOME:$PATH' >> /etc/profile.d/pnpmPath.sh
-source /etc/profile.d/pnpmPath.sh
+touch /etc/profile.d/pnpmPath.sh && \
+  echo 'export PNPM_HOME=/root/.local/share/pnpm' >> /etc/profile.d/pnpmPath.sh && \
+  echo 'export PATH=$PNPM_HOME:$PATH' >> /etc/profile.d/pnpmPath.sh && \
+  source /etc/profile.d/pnpmPath.sh
 
 # Installing packages
 apk update
