@@ -14,7 +14,10 @@ apk add --no-cache \
 
 # Install pnpm and ni
 npx pnpm i -g pnpm@latest
-pnpm i -g @antfu/ni && echo 'defaultAgent=pnpm' > .nirc && echo 'globalAgent=pnpm' >> .nirc
+pnpm i -g @antfu/ni && \
+  touch ~/.nirc && \
+  echo 'defaultAgent=pnpm' >> ~/.nirc && \
+  echo 'globalAgent=pnpm' >> ~/.nirc
 
 # Adding a simple command to change git remote connection from/to ssh/https
 touch /etc/profile.d/gitRemoteChanger.sh && \
