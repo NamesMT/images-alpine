@@ -1,7 +1,6 @@
 ## What this?
-Commands to install the same node-dev environment in a fresh Alpine instance, preferably inside of WSL.
+## Script to install the same node-dev environment in a fresh Alpine instance, preferably inside of WSL.
 
-```sh
 # Setting the required environment path for pnpm
 touch /etc/profile.d/pnpmPath.sh && \
   echo 'export PNPM_HOME=/root/.local/share/pnpm' >> /etc/profile.d/pnpmPath.sh && \
@@ -37,4 +36,3 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/download/v1.
   -p https://github.com/zsh-users/zsh-completions \
   -p https://github.com/zsh-users/zsh-syntax-highlighting
 sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
-```
