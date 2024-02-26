@@ -11,13 +11,6 @@ RELEASE=$(wget -qO- "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/release
 # GET THE TAG NAME AS WE USE IT FOR OUR OWN TAGS
 VERSION=$(echo $RELEASE | jq -r '.name')
 
-# EXTRACT THE DATE OF THE RELEASE AND MAKE IT A TIMESTAMP
-TIMESTAMP=$(echo $RELEASE | jq -r '.published_at' | date -f - +%s)
-# GET THE CURRENT TIME
-CURRENT_TIMESTAMP=$(date +%s)
-# AND SUBTRACT 24 HOURS AS WE CHECK 1 TIME PER DAY
-TIMESTAMP_24_HOURS_AGO=$((CURRENT_TIMESTAMP - 86400))
-
 TAG_NAME=pnpm$(echo $VERSION | cut -dv -f2)
 # CHECK IF WE ALREADY BUILD THE TAG
 if [ $(git tag -l "$TAG_NAME") ]; then
