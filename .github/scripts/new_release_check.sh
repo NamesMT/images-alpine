@@ -18,12 +18,12 @@ CURRENT_TIMESTAMP=$(date +%s)
 # AND SUBTRACT 24 HOURS AS WE CHECK 1 TIME PER DAY
 TIMESTAMP_24_HOURS_AGO=$((CURRENT_TIMESTAMP - 86400))
 
+TAG_NAME=pnpm$(echo $VERSION | cut -dv -f2)
 # CHECK IF WE ALREADY BUILD THE TAG
-if [ $(git tag -l "$VERSION") ]; then
+if [ $(git tag -l "$TAG_NAME") ]; then
   echo "Tag version exists in our repo, nothing to do"
 else
   echo "Found a new version: $VERSION. Tagging this repository to trigger rebuild"
-  TAG_NAME=pnpm$(echo $VERSION | cut -dv -f2)
   git tag $TAG_NAME
   git push origin $TAG_NAME
 fi
