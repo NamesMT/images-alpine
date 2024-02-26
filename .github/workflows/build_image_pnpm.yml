@@ -34,22 +34,22 @@ jobs:
           echo "suffix=${SUFFIX}" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
         with:
           platforms: amd64,arm64
 
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           username: ${{ env.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PAT }}
 
       - name: Build node
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           file: ./Dockerfile.node
           platforms: linux/amd64,linux/arm64
@@ -59,7 +59,7 @@ jobs:
             ${{ steps.container_detail.outputs.imageName }}:node_${{ steps.container_detail.outputs.suffix }}
 
       - name: Build node-dev
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           file: ./Dockerfile.node-dev
           platforms: linux/amd64,linux/arm64
@@ -69,7 +69,7 @@ jobs:
             ${{ steps.container_detail.outputs.imageName }}:node-dev_${{ steps.container_detail.outputs.suffix }}
 
       - name: Build node-aws
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           file: ./Dockerfile.node-aws
           platforms: linux/amd64,linux/arm64
@@ -79,7 +79,7 @@ jobs:
             ${{ steps.container_detail.outputs.imageName }}:node-aws_${{ steps.container_detail.outputs.suffix }}
 
       - name: Build node-aws-dev
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v5
         with:
           file: ./Dockerfile.node-aws-dev
           platforms: linux/amd64,linux/arm64
