@@ -21,6 +21,8 @@
     - https://github.com/zsh-users/zsh-completions
     - https://github.com/zsh-users/zsh-syntax-highlighting
 
+---
+
 ### Use:
 Available on Docker registry: (auto-built on pnpm releases)
 ```sh
@@ -29,6 +31,21 @@ podman run -it --rm namesmt/images-alpine:node-dev
 # For CIs, you should pin the version: 
 podman run -it --rm namesmt/images-alpine:node-dev_pnpm8.10.5
 ```
+
+#### WSL2 Alpine Quick Start:
+Follow [Yuka](https://github.com/yuk7/AlpineWSL)'s instruction to install Alpine WSL2
+
+Setting up `node-dev`:
+```sh
+wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/node-dev.sh -O- | sh
+```
+
+Setup docker:
+```sh
+wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-docker.sh -O- | sh
+```
+
+---
 
 ### Build:
 ```sh
