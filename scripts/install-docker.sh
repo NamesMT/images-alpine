@@ -22,11 +22,11 @@ sudo usermod -aG docker ${USERNAME}
 # get start script docker
 curl https://gist.githubusercontent.com/richard24se/c41d7edde19ccb87ef8d1083822d4e26/raw/094d8a98aee2b10ea397ec210f06c3ae83be67ef/alpine.docker.service.sh --output ${HOME}/alpine.docker.service.sh
 # configure start docker when logging
-echo "source $HOME/alpine.docker.service.sh" > $HOME/.profile
+echo "source $HOME/alpine.docker.service.sh" >> $HOME/.profile
 # configure start docker for .zsh if .zshrc exists
 if [ -e $HOME/.zshrc ]
 then
-    cat $HOME/alpine.docker.service.sh >> $HOME/.zshrc
+    echo "source $HOME/alpine.docker.service.sh" >> $HOME/.zshrc
 fi
 # start docker
 source $HOME/alpine.docker.service.sh
@@ -54,7 +54,7 @@ echo "source $HOME/alpine.cgroup.systemd.sh" >> $HOME/.profile
 # configure start cgroup systemd for .zsh if .zshrc exists
 if [ -e $HOME/.zshrc ]
 then
-    cat $HOME/alpine.cgroup.systemd.sh >> $HOME/.zshrc
+    echo "source $HOME/alpine.cgroup.systemd.sh" >> $HOME/.zshrc
 fi
 # start cgroup systemd
 source $HOME/alpine.cgroup.systemd.sh
