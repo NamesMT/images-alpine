@@ -26,7 +26,7 @@ touch /etc/profile.d/gitRemoteChanger.sh && \
   source /etc/profile.d/gitRemoteChanger.sh
 
 # Configures zsh
-sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \
   -x \
   -t https://github.com/spaceship-prompt/spaceship-prompt \
   -a 'SPACESHIP_USER_SHOW=false' \

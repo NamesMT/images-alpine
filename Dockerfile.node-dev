@@ -33,7 +33,7 @@ RUN touch /etc/profile.d/gitRemoteChanger.sh && \
   echo $'alias git-https=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^git@\(\[\^:\]\*\):/\*\(.\*\)\$,https://\\1/\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh' && \
   source /etc/profile.d/gitRemoteChanger.sh
 
-RUN sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
+RUN sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \
   -x \
   -t https://github.com/spaceship-prompt/spaceship-prompt \
   -a 'SPACESHIP_USER_SHOW=false' \
