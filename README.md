@@ -8,7 +8,7 @@
 - Latest Node LTS & pnpm (**node**)
   - [@antfu/ni](https://github.com/antfu/ni)
 - Self-built latest aws-cli v2 (**aws**)
-- git + curl + zsh + Oh My Zsh! (**dev**)
+- git + curl + Oh My Zsh! (**dev**)
   - Theme: [spaceship](https://spaceship-prompt.sh/)
     - SPACESHIP_USER_SHOW=false
     - SPACESHIP_DIR_TRUNC_REPO=false
@@ -26,10 +26,10 @@
 ### Use:
 Available on Docker registry: (auto-built on pnpm releases)
 ```sh
-podman run -it --rm namesmt/images-alpine:node-dev
+docker run -it --rm namesmt/images-alpine:node-dev
 
 # For CIs, you should pin the version: 
-podman run -it --rm namesmt/images-alpine:node-dev_pnpm8.10.5
+docker run -it --rm namesmt/images-alpine:node-dev_pnpm8.10.5
 ```
 
 #### WSL2 Alpine Quick Start:
@@ -51,8 +51,8 @@ wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/instal
 ```sh
 export imageName=namesmt/images-alpine
 export imageTag= # node | node-dev | node-aws ...
-podman build -t ${imageName}:${imageTag} -f Dockerfile.${imageTag}
-podman push ${imageName}:${imageTag}
+docker build -f "Dockerfile.${imageTag}" -t "${imageName}:${imageTag}" "."
+docker push "${imageName}:${imageTag}"
 ```
 
 ## Roadmap
