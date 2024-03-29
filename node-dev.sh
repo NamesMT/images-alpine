@@ -1,5 +1,5 @@
 ## What this?
-## Script to install the same node-dev environment in a fresh Alpine instance, preferably inside of WSL.
+## Script to install the same `Dockerfile.node-dev` environment in a fresh Alpine instance, preferably inside of WSL.
 
 # Setting the required environment path for pnpm
 touch /etc/profile.d/pnpmPath.sh && \
