@@ -1,16 +1,32 @@
 ## What this?
-## Script to install the same `Dockerfile.node-dev` environment in a fresh Alpine instance, preferably inside of WSL.
+## Script to install a similar dev environment like `Dockerfile.node-dev` environment in a fresh Alpine instance, preferably inside of WSL.
 
-# Setting the required environment path for pnpm
+# Install basic packages
+apk update
+apk add --no-cache \
+  gcompat libstdc++ zip jq sudo git less zsh curl
+
+# set zsh as default shell
+sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
+touch ~/.zshrc
+zsh
+
+# Install required build packages for nvm and install lts node using nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.zshrc
+
+# Setup alternative nodejs mirror for nvm (for alpine musl builds)
+touch /etc/profile.d/nvmMirror.sh && \
+  echo 'export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release' >> /etc/profile.d/nvmMirror.sh && \
+  source /etc/profile.d/nvmMirror.sh
+
+nvm install --lts
+
+# Setup the environment path for pnpm
 touch /etc/profile.d/pnpmPath.sh && \
   echo 'export PNPM_HOME=/root/.local/share/pnpm' >> /etc/profile.d/pnpmPath.sh && \
   echo 'export PATH=$PNPM_HOME:$PATH' >> /etc/profile.d/pnpmPath.sh && \
   source /etc/profile.d/pnpmPath.sh
-
-# Installing packages
-apk update
-apk add --no-cache \
-  gcompat libstdc++ zip jq sudo git less zsh curl nodejs npm
 
 # Install pnpm and ni
 npx pnpm i -g pnpm@latest
@@ -38,4 +54,3 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/downl
   -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
   -p https://github.com/zsh-users/zsh-syntax-highlighting
-sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
