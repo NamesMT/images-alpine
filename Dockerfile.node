@@ -5,8 +5,17 @@ LABEL maintainer="dangquoctrung123@gmail.com"
 
 ARG PNPM_VERSION=latest
 
+## Install basic packages
 RUN apk add --no-cache \
-  gcompat libstdc++ zip jq sudo
+  gcompat libstdc++ zip unzip jq sudo curl zsh
+
+# Clear the ENTRYPOINT from node image
+ENTRYPOINT []
+# Set zsh as the default shell
+RUN sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
+SHELL ["/bin/zsh", "--login"]
+CMD ["/bin/zsh", "--login"]
+##
 
 ## Install PNPM
 ENV PNPM_HOME=/root/.local/share/pnpm

@@ -5,8 +5,18 @@ LABEL maintainer="dangquoctrung123@gmail.com"
 
 ARG PNPM_VERSION=latest
 
+## Install basic packages
 RUN apk add --no-cache \
-  gcompat libstdc++ zip jq sudo
+  gcompat libstdc++ zip unzip jq sudo curl zsh
+
+# Clear the ENTRYPOINT from node image
+ENTRYPOINT []
+# Set zsh as the default shell
+RUN sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
+SHELL ["/bin/zsh", "-c"]
+ENV SHELL=/bin/zsh
+CMD ["/bin/zsh", "--login"]
+##
 
 ## Install PNPM
 ENV PNPM_HOME=/root/.local/share/pnpm
@@ -24,8 +34,8 @@ RUN pnpm i -g @antfu/ni && \
   echo 'globalAgent=pnpm' >> ~/.nirc
 ##
 
-## Install dev components (should be last in script)
-RUN apk add --no-cache git less zsh curl
+## +dev: enhancements for development :D
+RUN apk add --no-cache git less
 
 # Adding a simple command to change git remote connection from/to ssh/https
 RUN touch /etc/profile.d/gitRemoteChanger.sh && \
@@ -45,10 +55,4 @@ RUN sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/d
   -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
   -p https://github.com/zsh-users/zsh-syntax-highlighting
-
-# Clear the ENTRYPOINT from node image
-ENTRYPOINT []
-# Set zsh as the default shell
-RUN sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
-CMD ["/bin/zsh", "--login"]
 ##
