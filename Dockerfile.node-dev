@@ -13,7 +13,7 @@ RUN apk add --no-cache \
 ENTRYPOINT []
 # Set zsh as the default shell
 RUN sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
-SHELL ["/bin/zsh", "-c"]
+SHELL ["/bin/zsh", "-lc"]
 ENV SHELL=/bin/zsh
 CMD ["/bin/zsh", "--login"]
 ##
