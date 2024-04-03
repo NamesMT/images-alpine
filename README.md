@@ -37,7 +37,7 @@ Follow [Yuka](https://github.com/yuk7/AlpineWSL)'s instruction to install Alpine
 
 Setting up `node-dev`:
 ```sh
-wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/node-dev.sh -O- | sh
+wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/node-dev.sh -O- | bash
 ```
 
 Setup docker:

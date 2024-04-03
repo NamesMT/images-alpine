@@ -10,6 +10,7 @@ apk add --no-cache \
 sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
 touch ~/.zshrc
 zsh
+export SHELL=/bin/zsh
 
 # Install required build packages for nvm and install lts node using nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
