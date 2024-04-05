@@ -6,9 +6,22 @@ apk update
 apk add --no-cache \
   gcompat libstdc++ zip jq sudo git less zsh curl
 
+# Configures zsh
+sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \
+  -x \
+  -t https://github.com/spaceship-prompt/spaceship-prompt \
+  -a 'SPACESHIP_USER_SHOW=false' \
+  -a 'SPACESHIP_DIR_TRUNC_REPO=false' \
+  -p command-not-found \
+  -p git \
+  -p history-substring-search \
+  -p z \
+  -p https://github.com/zsh-users/zsh-autosuggestions \
+  -p https://github.com/zsh-users/zsh-completions \
+  -p https://github.com/zsh-users/zsh-syntax-highlighting
+
 # set zsh as default shell
 sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
-touch ~/.zshrc
 zsh
 export SHELL=/bin/zsh
 
@@ -41,17 +54,3 @@ touch /etc/profile.d/gitRemoteChanger.sh && \
   echo alias git-ssh=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^https://\(\[\^/\]\*\)/\(.\*\)\$,git@\\1:\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh && \
   echo alias git-https=\'git remote set-url origin \"\$\(git remote get-url origin \| sed -E \'\\\'\'s,\^git@\(\[\^:\]\*\):/\*\(.\*\)\$,https://\\1/\\2,\'\\\'\'\)\"\' >> /etc/profile.d/gitRemoteChanger.sh && \
   source /etc/profile.d/gitRemoteChanger.sh
-
-# Configures zsh
-sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/download/zsh-in-docker.sh)" -- \
-  -x \
-  -t https://github.com/spaceship-prompt/spaceship-prompt \
-  -a 'SPACESHIP_USER_SHOW=false' \
-  -a 'SPACESHIP_DIR_TRUNC_REPO=false' \
-  -p command-not-found \
-  -p git \
-  -p history-substring-search \
-  -p z \
-  -p https://github.com/zsh-users/zsh-autosuggestions \
-  -p https://github.com/zsh-users/zsh-completions \
-  -p https://github.com/zsh-users/zsh-syntax-highlighting
