@@ -1,20 +1,14 @@
 ## What this?
 ## Script to setup docker in a fresh alpine instance :D
-## Credit goes to richart24se's gist: https://gist.github.com/richard24se/336cb2502400a63f4670c751eaca1929, is modified to add login script for zsh.
+## Credit goes to richart24se's gist: https://gist.github.com/richard24se/336cb2502400a63f4670c751eaca1929, is modified to add login script for zsh, fix usermod not found, remove build packages and fix docker-compose install (now install from registry, install from pip will error).
 
 # change to root and install packages
-su -c "apk add sudo openrc curl python3 python3-dev nload htop"
+su -c "apk add sudo shadow curl"
 # if your user doesn't exists then remove sudo passwords
 USERNAME=$(whoami)
 su -c "grep -qxF '${USERNAME} ALL=(ALL) NOPASSWD: ALL' /etc/sudoers || echo '${USERNAME} ALL=(ALL) NOPASSWD: ALL' |  tee -a /etc/sudoers"
-# install compilers
-sudo apk add build-base
-# install pip3
-sudo apk add py3-pip
-# upgrade pip3
-sudo pip3 install pip -U
-# install docker
-sudo apk add docker
+# install docker, docker-compose
+sudo apk add docker docker-compose
 # mount cgroup
 echo "cgroup /sys/fs/cgroup cgroup defaults 0 0" | sudo tee -a  /etc/fstab
 # add perm docker
@@ -32,10 +26,6 @@ fi
 source $HOME/alpine.docker.service.sh
 # verify docker note: first time with sudo
 sudo docker info
-# install packages reqs for docker-compose
-sudo apk add gcc musl-dev libressl-dev libffi-dev make cargo
-# install docker-compose
-sudo pip3 install docker-compose
 # verify docker-compose
 docker-compose version
 # cgroup systemd
