@@ -3,8 +3,6 @@ ARG ALPINE_VERSION=3.18
 FROM node:lts-alpine${ALPINE_VERSION}
 LABEL maintainer="dangquoctrung123@gmail.com"
 
-ARG PNPM_VERSION=latest
-
 ## Install basic packages
 RUN apk add --no-cache \
   gcompat libstdc++ zip unzip jq sudo curl zsh
