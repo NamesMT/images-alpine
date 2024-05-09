@@ -25,16 +25,10 @@ sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
 zsh
 export SHELL=/bin/zsh
 
-# Install required build packages for nvm and install lts node using nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# Install fnm (patched for alpine zsh) and install lts node using fnm
+wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-fnm.sh -O- | sh
 source ~/.zshrc
-
-# Setup alternative nodejs mirror for nvm (for alpine musl builds)
-touch /etc/profile.d/nvmMirror.sh && \
-  echo 'export NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release' >> /etc/profile.d/nvmMirror.sh && \
-  source /etc/profile.d/nvmMirror.sh
-
-nvm install --lts
+fnm install --lts
 
 # Setup the environment path for pnpm
 touch /etc/profile.d/pnpmPath.sh && \
