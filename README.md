@@ -8,7 +8,7 @@
 - Latest Node LTS & pnpm (**node**)
   - [@antfu/ni](https://github.com/antfu/ni)
 - Self-built latest aws-cli v2 (**aws**)
-- git + curl + Oh My Zsh! (**dev**)
+- git + Oh My Zsh! (**dev**)
   - Theme: [spaceship](https://spaceship-prompt.sh/)
     - SPACESHIP_USER_SHOW=false
     - SPACESHIP_DIR_TRUNC_REPO=false
@@ -20,6 +20,8 @@
     - https://github.com/zsh-users/zsh-autosuggestions
     - https://github.com/zsh-users/zsh-completions
     - https://github.com/zsh-users/zsh-syntax-highlighting
+- These common packages are also installed for all suffix/version:
+  - `gcompat` `libstdc++` `zip` `unzip` `jq` `sudo` `curl`
 
 ---
 
