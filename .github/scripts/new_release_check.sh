@@ -9,7 +9,7 @@ REPO_NAME="pnpm"
 RELEASE=$(wget -qO- "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest")
 
 # GET THE TAG NAME AS WE USE IT FOR OUR OWN TAGS
-VERSION=$(echo $RELEASE | jq -r '.name')
+VERSION=$(echo $RELEASE | jq -r '.tag_name')
 
 TAG_NAME=pnpm$(echo $VERSION | cut -dv -f2)
 # CHECK IF WE ALREADY BUILD THE TAG
