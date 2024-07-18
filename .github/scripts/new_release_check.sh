@@ -6,7 +6,7 @@ check_version() {
   TAG_NAME=pnpm$(echo $1 | cut -dv -f2)
   # CHECK IF WE ALREADY BUILD THE TAG
   if [ $(git tag -l "$TAG_NAME") ]; then
-    echo "Tag version exists in our repo, nothing to do"
+    echo "Version exists: $1"
   else
     echo "Found a new version: $1. Tagging this repository to trigger rebuild"
     git tag $TAG_NAME
