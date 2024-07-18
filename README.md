@@ -4,7 +4,7 @@
 ![Docker Image Size (node-aws-dev)](https://img.shields.io/docker/image-size/namesmt/images-alpine/node-aws-dev?label=image%20size%3Anode-aws-dev)
 
 ### Features:
-- Alpine 3.19
+- Alpine 3.20
 - Latest Node LTS & pnpm (**node**)
   - [@antfu/ni](https://github.com/antfu/ni)
 - Self-built latest aws-cli v2 (**aws**)
