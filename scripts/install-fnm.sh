@@ -22,7 +22,7 @@ check_dependencies() {
 }
 
 download_fnm() {
-  URL=https://github.com/NamesMT/images-alpine/raw/main/assets/fnm-1.35.1-patched.zip
+  URL=https://github.com/Schniz/fnm/releases/latest/download/fnm-linux.zip
 
   DOWNLOAD_DIR=$(mktemp -d)
 
@@ -30,7 +30,7 @@ download_fnm() {
 
   mkdir -p "$INSTALL_DIR" &>/dev/null
 
-  if ! wget https://github.com/NamesMT/images-alpine/raw/main/assets/fnm-1.35.1-patched.zip -O $DOWNLOAD_DIR/fnmArchive.zip; then
+  if ! wget $URL -O $DOWNLOAD_DIR/fnmArchive.zip; then
     echo "Download failed."
     exit 1
   fi
@@ -43,7 +43,7 @@ download_fnm() {
     mv "$DOWNLOAD_DIR/fnmArchive/fnm" "$INSTALL_DIR/fnm"
   fi
 
-  chmod u+x "$INSTALL_DIR/fnm"
+  chmod +x "$INSTALL_DIR/fnm"
 
   rm -rf $DOWNLOAD_DIR
 }
