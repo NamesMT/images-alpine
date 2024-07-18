@@ -1,8 +1,6 @@
-ARG ALPINE_VERSION=3.19
-
 ## +aws: Building aws-cli
 # Even though alpine 3.18+ have native aws-cli package, the self-built package have lower size and ensure latest version.
-FROM python:3.11-alpine${ALPINE_VERSION} as builder
+FROM python:3.11-alpine as builder
 
 RUN apk add --update-cache --no-cache \
   unzip \
