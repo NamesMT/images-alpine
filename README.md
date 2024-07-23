@@ -1,4 +1,4 @@
-# [namesmt/images-alpine](https://github.com/NamesMT/images-alpine) - [Docker link](https://hub.docker.com/repository/docker/namesmt/images-alpine/general)
+# [namesmt/images-alpine](https://github.com/NamesMT/images-alpine) - [Docker link](https://hub.docker.com/r/namesmt/images-alpine)
 ![Docker Pulls](https://img.shields.io/docker/pulls/namesmt/images-alpine)
 ![Docker Image Size (node)](https://img.shields.io/docker/image-size/namesmt/images-alpine/node?label=image%20size%3Anode)
 ![Docker Image Size (node-aws-dev)](https://img.shields.io/docker/image-size/namesmt/images-alpine/node-aws-dev?label=image%20size%3Anode-aws-dev)
