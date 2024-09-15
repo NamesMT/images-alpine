@@ -43,14 +43,16 @@ wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/node-dev.sh -O
 ```
 
 #### Additional scripts:
-##### [fnm](https://github.com/Schniz/fnm) - Fast Node Manager, similar to `nvm`
+##### Install [fnm](https://github.com/Schniz/fnm) - Fast Node Manager, similar to `nvm`
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-fnm.sh -O- | sh
 ```
-##### Docker
+##### Install Docker
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-docker.sh -O- | sh
 ```
+You can call `~/alpine.docker.service.sh` to start the docker service,  
+And call `~/alpine.docker.service.sh stop` to stop the docker service.
 
 ---
 
