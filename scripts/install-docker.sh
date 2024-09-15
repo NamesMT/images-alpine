@@ -14,7 +14,7 @@ echo "cgroup /sys/fs/cgroup cgroup defaults 0 0" | sudo tee -a  /etc/fstab
 # add perm docker
 sudo usermod -aG docker ${USERNAME}
 # get start script docker
-curl https://gist.githubusercontent.com/richard24se/c41d7edde19ccb87ef8d1083822d4e26/raw/094d8a98aee2b10ea397ec210f06c3ae83be67ef/alpine.docker.service.sh --output ${HOME}/alpine.docker.service.sh
+curl https://gist.githubusercontent.com/NamesMT/0708cc223a3db878df0477159115a49b/raw/17f45c7f23d3ecd8125963d5171f046979cb8f28/alpine.docker.service.sh --output ${HOME}/alpine.docker.service.sh
 # configure start docker when logging
 echo "source $HOME/alpine.docker.service.sh" >> $HOME/.profile
 # configure start docker for .zsh if .zshrc exists
