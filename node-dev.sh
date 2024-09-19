@@ -26,6 +26,7 @@ sh -c "$(wget -qO- https://github.com/deluan/zsh-in-docker/releases/latest/downl
 
 # set zsh as default shell
 sed -i 's/\/root:\/bin\/ash/\/root:\/bin\/zsh/g' /etc/passwd
+sed -i 's/\/root:\/bin\/sh/\/root:\/bin\/zsh/g' /etc/passwd
 zsh
 export SHELL=/bin/zsh
 
