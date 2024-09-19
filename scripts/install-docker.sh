@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 ## What this?
 ## Script to setup docker in a fresh alpine instance :D
 ## Credit goes to richart24se's gist: https://gist.github.com/richard24se/336cb2502400a63f4670c751eaca1929, is modified to add login script for zsh, fix usermod not found, remove build packages and fix docker-compose install (now install from registry, install from pip will error).
