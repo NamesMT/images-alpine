@@ -47,12 +47,19 @@ wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/node-dev.sh -O
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-fnm.sh -O- | sh
 ```
+
 ##### Install Docker
 ```sh
 wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-docker.sh -O- | sh
 ```
 You can call `~/alpine.docker.service.sh` to start the docker service,  
 And call `~/alpine.docker.service.sh stop` to stop the docker service.
+
+##### Install [bun](https://bun.sh/)
+```sh
+apk del gcompat glibc glibc-bin # First, clear the current compat libraries
+wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-bun.sh -O- | sh
+```
 
 ---
 
