@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 ## What this?
 ## Script to install a similar dev environment like `Dockerfile.node-dev` environment in a fresh Alpine instance, preferably inside of WSL.
 
