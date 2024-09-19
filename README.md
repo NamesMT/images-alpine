@@ -56,8 +56,8 @@ You can call `~/alpine.docker.service.sh` to start the docker service,
 And call `~/alpine.docker.service.sh stop` to stop the docker service.
 
 ##### Install [bun](https://bun.sh/)
+Note: the script will remove current `gcompat`, `glibc`, `glibc-bin` if they exists.
 ```sh
-apk del gcompat glibc glibc-bin # First, clear the current compat libraries
 wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-bun.sh -O- | sh
 ```
 
