@@ -1,6 +1,6 @@
 ## +aws: Building aws-cli
 # Even though alpine 3.18+ have native aws-cli package, the self-built package have lower size and ensure latest version.
-FROM python:3.11-alpine as builder
+FROM python:3.12-alpine as builder
 
 RUN apk add --update-cache --no-cache \
   unzip \
@@ -17,15 +17,14 @@ RUN wget $(wget https://api.github.com/repos/aws/aws-cli/tags\?per_page\=1 -qO- 
 
 RUN python -m venv venv
 RUN . venv/bin/activate
-RUN scripts/installers/make-exe
-RUN unzip -q dist/awscli-exe.zip
-RUN aws/install --bin-dir /aws-cli-bin
-RUN /aws-cli-bin/aws --version
+RUN ./configure --with-download-deps --with-install-type=portable-exe --prefix=/opt/aws-cli
+RUN make
+RUN make install
 
 # reduce image size: remove autocomplete and examples
-RUN rm -rf /usr/local/aws-cli/v2/current/dist/aws_completer /usr/local/aws-cli/v2/current/dist/awscli/data/ac.index /usr/local/aws-cli/v2/current/dist/awscli/examples
-RUN find /usr/local/aws-cli/v2/current/dist/awscli/data -name completions-1*.json -delete
-RUN find /usr/local/aws-cli/v2/current/dist/awscli/botocore/data -name examples-1.json -delete
+RUN rm -rf /opt/aws-cli/bin/aws_completer /opt/aws-cli/lib/aws-cli/aws_completer /opt/aws-cli/lib/aws-cli/awscli/data/ac.index /opt/aws-cli/lib/aws-cli/awscli/examples
+RUN find /opt/aws-cli/lib/aws-cli/awscli/data -name completions-1*.json -delete
+RUN find /opt/aws-cli/lib/aws-cli/awscli/botocore/data -name examples-1.json -delete
 ##
 
 
@@ -33,6 +32,6 @@ FROM namesmt/images-alpine:node
 LABEL maintainer="dangquoctrung123@gmail.com"
 
 ## +aws: Copy built aws-cli
-COPY --from=builder /usr/local/aws-cli/ /usr/local/aws-cli/
-COPY --from=builder /aws-cli-bin/ /usr/local/bin/
+COPY --from=builder /opt/aws-cli/lib/aws-cli/ /usr/local/aws-cli/
+RUN ln -s /usr/local/aws-cli/aws /usr/local/bin/aws
 ##
