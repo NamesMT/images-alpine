@@ -55,12 +55,6 @@ wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/instal
 You can call `~/alpine.docker.service.sh` to start the docker service,  
 And call `~/alpine.docker.service.sh stop` to stop the docker service.
 
-##### Install [bun](https://bun.sh/)
-Note: the script will remove current `gcompat`, `glibc`, `glibc-bin` if they exists.
-```sh
-wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-bun.sh -O- | sh
-```
-
 ---
 
 ### Build:
