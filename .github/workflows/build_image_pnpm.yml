@@ -51,7 +51,7 @@ jobs:
       - name: Build node
         uses: docker/build-push-action@v5
         with:
-          file: ./Dockerfile.node
+          file: ./node.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -61,7 +61,7 @@ jobs:
       - name: Build node-dev
         uses: docker/build-push-action@v5
         with:
-          file: ./Dockerfile.node-dev
+          file: ./node-dev.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -71,7 +71,7 @@ jobs:
       - name: Build node-aws
         uses: docker/build-push-action@v5
         with:
-          file: ./Dockerfile.node-aws
+          file: ./node-aws.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -81,7 +81,7 @@ jobs:
       - name: Build node-aws-dev
         uses: docker/build-push-action@v5
         with:
-          file: ./Dockerfile.node-aws-dev
+          file: ./node-aws-dev.Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

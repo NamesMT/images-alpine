@@ -61,7 +61,7 @@ And call `~/alpine.docker.service.sh stop` to stop the docker service.
 ```sh
 export imageName=namesmt/images-alpine
 export imageTag= # node | node-dev | node-aws ...
-docker build -f "Dockerfile.${imageTag}" -t "${imageName}:${imageTag}" "."
+docker build -f "${imageTag}.Dockerfile" -t "${imageName}:${imageTag}" "."
 docker push "${imageName}:${imageTag}"
 ```
 

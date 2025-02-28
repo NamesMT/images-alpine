@@ -3,7 +3,7 @@
 set -e
 
 ## What this?
-## Script to install a similar dev environment like `Dockerfile.node-dev` environment in a fresh Alpine instance, preferably inside of WSL.
+## Script to install a similar dev environment like `node-dev.Dockerfile` environment in a fresh Alpine instance, preferably inside of WSL.
 
 # Install basic packages
 apk update
