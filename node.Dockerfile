@@ -25,7 +25,9 @@ RUN touch /etc/profile.d/pnpmPath.sh && \
   source /etc/profile.d/pnpmPath.sh
 # This will make the command re-run if theres a new pnpm version (prevents docker cache installing an older version)
 ADD "https://api.github.com/repos/pnpm/pnpm/tags?per_page=1" latest_commit
-RUN npx pnpm i -g pnpm@latest
+RUN npm install --global corepack@latest
+RUN corepack enable
+RUN corepack prepare pnpm --activate
 RUN pnpm i -g @antfu/ni && \
   touch ~/.nirc && \
   echo 'defaultAgent=pnpm' >> ~/.nirc && \

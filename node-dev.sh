@@ -42,7 +42,9 @@ touch /etc/profile.d/pnpmPath.sh && \
   source /etc/profile.d/pnpmPath.sh
 
 # Install pnpm and ni
-npx pnpm i -g pnpm@latest
+npm install --global corepack@latest
+corepack enable
+corepack prepare pnpm --activate
 pnpm i -g @antfu/ni && \
   touch ~/.nirc && \
   echo 'defaultAgent=pnpm' >> ~/.nirc && \
