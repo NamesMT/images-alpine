@@ -1,8 +1,8 @@
 ARG ALPINE_VERSION=3.21
-ARG PNPM_VERSION=latest
 
 FROM node:lts-alpine${ALPINE_VERSION}
 LABEL maintainer="dangquoctrung123@gmail.com"
+ARG PNPM_VERSION=latest
 
 ## Install basic packages
 RUN apk add --no-cache \
