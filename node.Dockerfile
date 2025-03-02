@@ -1,4 +1,5 @@
 ARG ALPINE_VERSION=3.21
+ARG PNPM_VERSION=latest
 
 FROM node:lts-alpine${ALPINE_VERSION}
 LABEL maintainer="dangquoctrung123@gmail.com"
@@ -27,7 +28,7 @@ RUN touch /etc/profile.d/pnpmPath.sh && \
 ADD "https://api.github.com/repos/pnpm/pnpm/tags?per_page=1" latest_commit
 RUN npm install --global corepack@latest
 RUN corepack enable
-RUN corepack prepare pnpm --activate
+RUN corepack prepare pnpm@$PNPM_VERSION --activate
 RUN pnpm i -g @antfu/ni && \
   touch ~/.nirc && \
   echo 'defaultAgent=pnpm' >> ~/.nirc && \
