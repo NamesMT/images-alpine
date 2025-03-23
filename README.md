@@ -55,6 +55,12 @@ wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/instal
 You can call `sh ~/alpine.docker.service.sh` to start the docker service,  
 And call `sh ~/alpine.docker.service.sh stop` to stop the docker service.
 
+##### Install [sgerrand/alpine-pkg-glibc](https://github.com/sgerrand/alpine-pkg-glibc)
+This package will help you in cases where an app requires glibc and `gcompat` doesn't work, like `Miniconda`, glibc `bun`.
+```sh
+wget https://raw.githubusercontent.com/NamesMT/images-alpine/main/scripts/install-glibc.sh -O- | sh
+```
+
 ---
 
 ### Build:
