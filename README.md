@@ -1,4 +1,4 @@
-# [namesmt/images-alpine](https://github.com/NamesMT/images-alpine) - [Docker link](https://hub.docker.com/r/namesmt/images-alpine)
+# [namesmt/images-alpine](https://github.com/NamesMT/images-alpine) - [Dockerhub link](https://hub.docker.com/r/namesmt/images-alpine)
 ![Docker Pulls](https://img.shields.io/docker/pulls/namesmt/images-alpine)
 ![Docker Image Size (node)](https://img.shields.io/docker/image-size/namesmt/images-alpine/node?label=image%20size%3Anode)
 ![Docker Image Size (node-aws-dev)](https://img.shields.io/docker/image-size/namesmt/images-alpine/node-aws-dev?label=image%20size%3Anode-aws-dev)
@@ -21,7 +21,7 @@
     - https://github.com/zsh-users/zsh-completions
     - https://github.com/zsh-users/zsh-syntax-highlighting
 - These common packages are also installed for all suffix/version:
-  - `gcompat` `libstdc++` `zip` `unzip` `jq` `sudo` `curl`
+  - `gcompat` `libstdc++` `zip` `unzip` `jq` `sudo` `curl` `zsh`
 
 ---
 
